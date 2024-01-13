@@ -1,9 +1,11 @@
 import Image from "next/image";
 import classes from "./page.module.css"
 import { getMeal } from "@/lib/meals";
+import NotFound from "@/app/not-found";
 export default async function MealDetailsPage({ params }) {
   const meal = await getMeal(params.mealSlug);
-  console.log(meal)
+  if (!meal) return NotFound();
+
   return <>
     <header className={classes.header}>
       <div className={classes.image}>
